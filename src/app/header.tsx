@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Container from './container';
-import ClientLink from './clientlink';
 import { cookies } from "next/headers";
 // import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 const Header = () => {
@@ -14,16 +13,16 @@ const Header = () => {
                     <nav>
                         <ul className='flex gap-4 items-center justify-start'>
                             <li>
-                                <ClientLink href='/'>Home</ClientLink>
+                                <Link href='/'>Home</Link>
                             </li>
                             <li>
-                                <ClientLink href='/#about'>About</ClientLink>
+                                <Link href='/#about'>About</Link>
                             </li>
                             <li>
-                                <ClientLink href='/#contact'>Contact</ClientLink>
+                                <Link href='/#contact'>Contact</Link>
                             </li>
                             <li>
-                                <ClientLink href='/blogs'>Blog</ClientLink>
+                                <Link href='/blogs'>Blog</Link>
                             </li>
                         </ul>
                     </nav>
