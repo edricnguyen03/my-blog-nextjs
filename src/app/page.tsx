@@ -1,9 +1,16 @@
-const Home = () => {
+
+import { Fragment } from "react";
+import HomeHero from '../components/fragment/home';
+
+import HomeAbout from "@/components/fragment/about";
+import HomeContact from "@/components/fragment/contact";
+
+export default function Home() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <p className="text-xl">This is a simple Next.js app with Tailwind CSS.</p>
-    </div>
+    <Fragment>
+      <HomeHero />
+      <HomeAbout />
+      <HomeContact />
+    </Fragment>
   );
 }
-export default Home;

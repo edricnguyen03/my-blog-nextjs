@@ -1,0 +1,61 @@
+{
+    "users":
+    [
+        {
+          "createdAt": "2025-04-10T19:11:40.565Z",
+          "password": "12345",
+          "email": "test@example.com",
+          "name": "Ms. Evelyn Quigley",
+          "avatar": "/images/users/user-1.png",
+          "id": "1"
+        }
+    ],
+    "articles":
+    [
+        {
+          "createdAt": "2025-04-10T20:16:12.786Z",
+          "title": "territo summopere tantum",
+          "description": "Conscendo tempora absorbeo ultio exercitationem cunabula dens cohaero vesper triumphus.",
+          "content": "Succedo dolor absque. Cresco cursus suggero conicio debitis ultra terminatio non necessitatibus. Adeo cunabula bardus alter ex adsum.\nAntiquus terreo patria nostrum comes vulpes sub vulgus. Unde angelus votum clamo cogito sunt talio suscipit. Volubilis inflammatio amo peior atavus.\nVicissitudo delego acerbitas ascit cuius ustulo tamquam. Ad contigo utrimque nobis vilitas comes arca deorsum coniecto accendo. Collum ascisco conculco commemoro vulnero veritatis xiphias vulticulus rem absque.",
+          "image": "/images/articles/article-1.jpg",
+          "category": "comminor",
+          "id": "1"
+        },
+        {
+          "createdAt": "2025-04-10T13:22:55.281Z",
+          "title": "anser territo vorax",
+          "description": "Theatrum auctor decumbo vespillo summisse degero conventus tego.",
+          "content": "Defero degero decor aut strues suffragium cibus tum alveus. Conor aedificium audeo ventosus tener crebro ultio caritas. Illum theologus claudeo.\nCreator vero artificiose. Tutis sperno defetiscor degusto decimus conservo aeger umerus comparo defaeco. Taceo virga beatae degusto.\nAncilla spiritus universe tersus. Alo aestus caput cumque thermae corpus doloribus venio. Advenio verumtamen bene vulnus modi soluta universe amplus aggero caelestis.",
+          "image": "/images/articles/article-2.jpg",
+          "category": "tabernus",
+          "id": "2"
+        },
+        {
+          "createdAt": "2025-04-10T01:00:54.994Z",
+          "title": "atqui suggero aspicio",
+          "description": "Vinum patria turpis contigo ambitus temeritas.",
+          "content": "Admitto veritatis comitatus conscendo defaeco balbus teneo. Quaerat textus cornu. Coepi termes sodalitas.\nClamo utpote concedo hic voluntarius accusamus abstergo saepe. Neque caritas talio calculus blanditiis. Celo dolores sonitus cohaero claro cetera.\nAlias umbra conforto videlicet adiuvo totus. Cupiditas textor antepono turpis arcesso expedita tergo. Color quis animus audio tergiversatio administratio surculus.",
+          "image": "/images/articles/article-1.jpg",
+          "category": "vinculum",
+          "id": "3"
+        },
+        {
+          "createdAt": "2025-04-10T01:50:27.665Z",
+          "title": "turpis ab patior",
+          "description": "Cado tener balbus desipio claro beneficium auxilium.",
+          "content": "Blanditiis convoco comprehendo talio laudantium despecto tamquam thorax collum speculum. Vester pax somnus defluo desparatus laudantium. Caute vapulus vicinus amo attollo arbitro barba sophismata.\nAmaritudo aegre absconditus tego. Adhuc depereo adsuesco conspergo dens tenuis. Theologus enim sui coruscus arto defluo tepesco.\nTrado clementia uredo thymbra. Admoveo capio subiungo. Territo comptus patria dolorum somnus placeat vespillo.",
+          "image": "/images/articles/article-2.jpg",
+          "category": "tero",
+          "id": "4"
+        },
+        {
+          "createdAt": "2025-04-10T03:13:23.696Z",
+          "title": "arma textus damno",
+          "description": "Qui triumphus adduco.",
+          "content": "Tabesco universe deripio. Suppono argumentum cursus. Conventus abundans vita vesco.\nVestigium uter utrum. Accusator video cotidie demum veritas socius sono calco valetudo pecto. Timidus totidem ventito contabesco tyrannus ventus caterva causa.\nTruculenter currus arca caelum compono ventosus subseco. Adsum triumphus vulticulus. Vitae rerum maiores casso demitto aspicio absens arguo.",
+          "image": "/images/articles/article-1.jpg",
+          "category": "venustas",
+          "id": "5"
+        }
+      ]
+}
