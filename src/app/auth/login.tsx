@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { wait } from "../blogs/page";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -27,7 +26,6 @@ const Login = () => {
                     JSON.stringify(user)
                 )}; path=/`;
                 router.push("/blogs");
-
                 window.location.reload();
             } else {
                 setError("Incorrect email or password!");
