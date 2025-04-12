@@ -8,7 +8,7 @@ const Header = () => {
         <header className='bg-slate-950 text-slate-50'>
             <Container classNames='flex items-center justify-between py-6'>
                 <div className='flex items-center justify-center gap-6'>
-                    <Link href='/' className='text-lg font-bold'>My Blog</Link>
+                    <Link href='/' className='text-2xl font-bold'>My Blog</Link>
                     <nav>
                         <ul className='flex gap-4 items-center justify-start'>
                             <li>

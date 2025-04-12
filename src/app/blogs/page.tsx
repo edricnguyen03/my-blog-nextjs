@@ -27,7 +27,7 @@ export default async function Blogs() {
                 <h1 className="text-4xl font-bold">All Blogs</h1>
                 <Link
                     href="/blogs/new"
-                    className="w-max rounded-md bg-slate-950 px-4 py-2 text-lg text-slate-50"
+                    className="w-max rounded-md bg-slate-950 px-4 py-2 text-base font-bold text-slate-50"
                 >
                     Create new
                 </Link>

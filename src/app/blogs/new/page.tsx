@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Container from "@/components/container";
 
 export default function NewBlog() {
     const [title, setTitle] = useState("");
@@ -39,46 +40,62 @@ export default function NewBlog() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-2xl font-bold mb-4">Create New Blog</h1>
-            <form className="flex flex-col gap-4 w-full max-w-md" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    required
-                />
-                <textarea
-                    placeholder="Content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    rows={5}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    required
-                />
+        <Container classNames="flex flex-col items-center justify-center h-screen">
+            <form className="flex flex-col gap-4 w-full max-w-xl rounded-xl shadow-2xl p-6" onSubmit={handleSubmit}>
+                <h1 className="text-2xl text-center font-bold mb-4">Create New Blog</h1>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="title" className="font-medium">Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="description" className="font-medium">Description</label>
+                    <input
+                        type="text"
+                        id="description"
+                        placeholder="Description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="content" className="font-medium">Content</label>
+                    <textarea
+                        id="content"
+                        placeholder="Content"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        rows={5}
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="category" className="font-medium">Category</label>
+                    <input
+                        type="text"
+                        id="category"
+                        placeholder="Category"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        required
+                    />
+                </div>
                 {error && <p className="text-red-500">{error}</p>}
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded">
                     Create Blog
                 </button>
             </form>
-        </div>
+        </Container>
     );
 };

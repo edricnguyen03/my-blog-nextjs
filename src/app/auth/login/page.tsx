@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Container from "@/components/container";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -48,32 +49,38 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-2xl font-bold mb-4">Login</h1>
+        <Container classNames="flex flex-col items-center justify-center h-screen">
             {isLoading && <p className="text-blue-500 mb-4">Signing in...</p>}
-            <form className="flex flex-col gap-4" onSubmit={handleLogin}>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    required
-                    disabled={isLoading} // Vô hiệu hóa khi đang xử lý
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
-                    required
-                    disabled={isLoading} // Vô hiệu hóa khi đang xử lý
-                />
+            <form className="flex flex-col gap-4 w-full max-w-xl rounded-xl shadow-2xl p-6" onSubmit={handleLogin}>
+                <h1 className="text-2xl text-center font-bold mb-4">Login</h1>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="email" className="font-medium">Email</label>
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        required
+                        disabled={isLoading} // Vô hiệu hóa khi đang xử lý
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="password" className="font-medium">Password</label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="p-2 border border-gray-300 rounded"
+                        required
+                        disabled={isLoading} // Vô hiệu hóa khi đang xử lý
+                    />
+                </div>
                 {error && <p className="text-red-500">{error}</p>}
                 <button
                     type="submit"
-                    className={`p-2 rounded ${isLoading
+                    className={`p-2 rounded font-bold ${isLoading
                         ? "bg-gray-400 text-white cursor-not-allowed"
                         : "bg-blue-500 text-white"
                         }`}
@@ -82,7 +89,7 @@ const Login = () => {
                     {isLoading ? "Logging in..." : "Login"}
                 </button>
             </form>
-        </div>
+        </Container>
     );
 };
 

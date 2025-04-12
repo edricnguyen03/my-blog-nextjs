@@ -9,9 +9,7 @@ const Logout = () => {
     useEffect(() => {
         // Xóa cookie chứa thông tin người dùng
         document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-        // Chuyển hướng về trang đăng nhập
         router.push("/");
-        // redirect("/");
         window.location.reload();
     }, [router]);
 
