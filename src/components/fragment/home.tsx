@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "@/app/container";
+import Container from "@/components/container";
 
 const HomeHero = () => {
     return (

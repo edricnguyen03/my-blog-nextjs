@@ -1,3 +1,7 @@
 export default function NotFound() {
-    return "Custom Not Found";
+    return (
+        <div className="flex items-center justify-center h-screen">
+            <h1 className="text-2xl font-bold">Custom not found</h1>
+        </div>
+    );
 };

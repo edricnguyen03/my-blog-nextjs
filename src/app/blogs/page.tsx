@@ -1,12 +1,11 @@
 
-import Container from "@/app/container";
+import Container from "@/components/container";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 import { TArticle } from "./schema";
-import { cookies } from "next/headers";
 
 export const isEmptyObject = (obj: object) => {
     return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
@@ -22,22 +21,9 @@ export const wait = (ms: number) => {
 }
 
 export default async function Blogs() {
-    const userCookie = cookies().get("user");
-    if (!userCookie) {
-        // Redirect to login page if not authenticated
-        return (
-            <div className="flex items-center justify-center h-screen">
-                <h1 className="text-2xl font-bold">You are not logged in</h1>
-                <Link href="/auth/login" className="text-blue-500 underline">
-                    Go to Login
-                </Link>
-            </div>
-        );
-    }
-    const res = await fetch("http://localhost:3000/api/data", { cache: "no-store" });
-    const data = await res.json();
 
-    const articles = data.articles;
+    const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" });
+    const articles: TArticle[] = await res.json();
 
     if (isEmptyObject(articles)) {
         notFound();
@@ -45,7 +31,16 @@ export default async function Blogs() {
 
     return (
         <Container classNames="my-12">
-            <h1 className="mb-6 text-4xl font-bold">All Blogs</h1>
+            <div className="mb-6 flex items-center justify-between">
+                <h1 className="text-4xl font-bold">All Blogs</h1>
+                <Link
+                    href="/blogs/new"
+                    className="w-max rounded-md bg-slate-950 px-4 py-2 text-lg text-slate-50"
+                >
+                    Create new
+                </Link>
+            </div>
+
             <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {articles.map((article: TArticle) => {
                     return (

@@ -17,5 +17,5 @@ export function middleware(request: NextRequest) {
 
 // Áp dụng middleware cho các route bắt đầu bằng /blogs
 export const config = {
-    matcher: ["/blogs/:path*"],
+    matcher: ["/blogs/new/"],
 };

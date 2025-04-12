@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Container from './container';
+import Container from '../container';
 import { cookies } from "next/headers";
 // import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 const Header = () => {
@@ -16,10 +16,10 @@ const Header = () => {
                                 <Link href='/'>Home</Link>
                             </li>
                             <li>
-                                <Link href='/#about'>About</Link>
+                                <Link href='/about'>About</Link>
                             </li>
                             <li>
-                                <Link href='/#contact'>Contact</Link>
+                                <Link href='/contact'>Contact</Link>
                             </li>
                             <li>
                                 <Link href='/blogs'>Blog</Link>

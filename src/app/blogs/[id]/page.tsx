@@ -1,4 +1,4 @@
-import Container from "@/app/container";
+import Container from "@/components/container";
 import { format } from "date-fns";
 import { TArticle } from "../schema";
 import { notFound } from "next/navigation";
@@ -9,12 +9,10 @@ const isEmptyObject = (obj: object) => {
 };
 
 export const generateStaticParams = async () => {
-    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" }).then((res) =>
-        res.json()
-    );
-    const articles: TArticle[] = data.articles;
+    const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" })
+    const articles: TArticle[] = await res.json();
 
-    return articles.map((article) => ({
+    return articles.map((article: TArticle) => ({
         id: article.id,
     }));
 };
@@ -25,10 +23,9 @@ export const generateMetadata = async ({
     params: { id: string };
 }) => {
     const { id } = params;
-    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" })
-        .then((res) => res.json()
-        );
-    const article = data.articles.find((item: TArticle) => item.id === id);
+    const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" })
+    const articles: TArticle[] = await res.json();
+    const article = articles.find((item: TArticle) => item.id === id);
 
     if (!article || isEmptyObject(article)) {
         return {
@@ -53,10 +50,9 @@ export const generateMetadata = async ({
 const SingleBlog = async ({ params }: { params: { id: string } }) => {
     const { id } = params;
 
-    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" }).then((res) =>
-        res.json()
-    );
-    const article = data.articles.find((item: TArticle) => item.id === id);
+    const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" })
+    const articles: TArticle[] = await res.json()
+    const article = articles.find((item: TArticle) => item.id === id);
 
     if (!article || isEmptyObject(article)) return notFound();
 

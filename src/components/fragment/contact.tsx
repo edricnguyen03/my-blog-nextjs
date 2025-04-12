@@ -1,5 +1,5 @@
 import ClientMessageForm from "@/components/form/client-message-form";
-import Container from "@/app/container";
+import Container from "@/components/container";
 
 const HomeContact = () => {
     return (
