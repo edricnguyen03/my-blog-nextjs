@@ -9,9 +9,11 @@ const isEmptyObject = (obj: object) => {
 };
 
 export const generateStaticParams = async () => {
-    const articles: TArticle[] = await fetch(
-        `${process.env.JSON_API_URL}/articles`,
-    ).then((res) => res.json());
+    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" }).then((res) =>
+        res.json()
+    );
+    const articles: TArticle[] = data.articles;
+
     return articles.map((article) => ({
         id: article.id,
     }));
@@ -23,9 +25,11 @@ export const generateMetadata = async ({
     params: { id: string };
 }) => {
     const { id } = params;
-    const article: TArticle = await fetch(
-        `${process.env.JSON_API_URL}/articles/${id}`,
-    ).then((res) => res.json());
+    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" })
+        .then((res) => res.json()
+        );
+    const article = data.articles.find((item: TArticle) => item.id === id);
+
     if (!article || isEmptyObject(article)) {
         return {
             title: "Single Blog",
@@ -49,9 +53,11 @@ export const generateMetadata = async ({
 const SingleBlog = async ({ params }: { params: { id: string } }) => {
     const { id } = params;
 
-    const article: TArticle = await fetch(
-        `${process.env.JSON_API_URL}/articles/${id}`,
-    ).then((res) => res.json());
+    const data = await fetch("http://localhost:3000/api/data", { cache: "no-store" }).then((res) =>
+        res.json()
+    );
+    const article = data.articles.find((item: TArticle) => item.id === id);
+
     if (!article || isEmptyObject(article)) return notFound();
 
     return (

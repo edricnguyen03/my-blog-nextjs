@@ -12,10 +12,11 @@ const Login = () => {
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5500/users");
-            const users = await response.json();
+            const response = await fetch("/api/data");
+            const data = await response.json();
+            console.log(data);
 
-            const user = users.find(
+            const user = data.users.find(
                 (u: { email: string; password: string }) =>
                     u.email === email && u.password === password
             );
