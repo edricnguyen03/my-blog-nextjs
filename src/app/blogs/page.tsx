@@ -25,7 +25,7 @@ export default async function Blogs() {
     const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" });
     const articles: TArticle[] = await res.json();
 
-    if (isEmptyObject(articles)) {
+    if (!articles || articles.length === 0) {
         notFound();
     }
 
