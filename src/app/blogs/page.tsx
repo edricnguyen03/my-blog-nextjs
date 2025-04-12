@@ -7,10 +7,6 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { TArticle } from "./schema";
 
-export const isEmptyObject = (obj: object) => {
-    return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
-};
-
 export const metadata: Metadata = {
     title: "All Blogs",
     description: "A collection of all blog posts available.",
