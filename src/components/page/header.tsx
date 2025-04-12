@@ -3,7 +3,6 @@ import Container from '../container';
 import { cookies } from "next/headers";
 // import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 const Header = () => {
-
     const userCookie = cookies().get("user")
     return (
         <header className='bg-slate-950 text-slate-50'>

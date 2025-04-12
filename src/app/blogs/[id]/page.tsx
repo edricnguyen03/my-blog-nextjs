@@ -4,10 +4,6 @@ import { TArticle } from "../schema";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-const isEmptyObject = (obj: object) => {
-    return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
-};
-
 export const generateStaticParams = async () => {
     const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" })
     const articles: TArticle[] = await res.json();
@@ -27,7 +23,7 @@ export const generateMetadata = async ({
     const articles: TArticle[] = await res.json();
     const article = articles.find((item: TArticle) => item.id === id);
 
-    if (!article || isEmptyObject(article)) {
+    if (!article || article.id !== id) {
         return {
             title: "Single Blog",
             description: "Single blog description",
@@ -54,7 +50,7 @@ const SingleBlog = async ({ params }: { params: { id: string } }) => {
     const articles: TArticle[] = await res.json()
     const article = articles.find((item: TArticle) => item.id === id);
 
-    if (!article || isEmptyObject(article)) return notFound();
+    if (!article) return notFound();
 
     return (
         <Container classNames="my-12">

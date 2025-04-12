@@ -12,10 +12,6 @@ export const metadata: Metadata = {
     description: "A collection of all blog posts available.",
 };
 
-export const wait = (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 export default async function Blogs() {
 
     const res = await fetch("http://localhost:3000/api/blogs", { cache: "no-store" });
