@@ -34,9 +34,10 @@ export default async function Blogs() {
             </div>
         );
     }
+    const res = await fetch("http://localhost:3000/api/data", { cache: "no-store" });
+    const data = await res.json();
 
-    const articles = await fetch(`${process.env.JSON_API_URL}/articles`)
-        .then((res) => res.json());
+    const articles = data.articles;
 
     if (isEmptyObject(articles)) {
         notFound();
