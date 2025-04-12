@@ -28,7 +28,7 @@ export default async function Blogs() {
         return (
             <div className="flex items-center justify-center h-screen">
                 <h1 className="text-2xl font-bold">You are not logged in</h1>
-                <Link href="/auth?page=login" className="text-blue-500 underline">
+                <Link href="/auth/login" className="text-blue-500 underline">
                     Go to Login
                 </Link>
             </div>

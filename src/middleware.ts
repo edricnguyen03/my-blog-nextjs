@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
 
     if (!user) {
         // Nếu chưa đăng nhập, chuyển hướng đến trang login
-        const loginUrl = new URL("/auth?page=login", request.url);
+        const loginUrl = new URL("/auth/login", request.url);
         return NextResponse.redirect(loginUrl);
     }
 

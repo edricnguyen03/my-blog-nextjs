@@ -29,11 +29,11 @@ const Header = () => {
                 </div>
                 <div>
                     {userCookie ? (
-                        <Link href='/auth?page=logout' className='bg-red-500 text-white px-4 py-2 text-base font-bold rounded-sm'>Logout</Link>
+                        <Link href='/auth/logout' className='bg-red-500 text-white px-4 py-2 text-base font-bold rounded-sm'>Logout</Link>
                     ) : (
                         <>
-                            <Link href='/auth?page=login' className='text-slate-50 px-4 py-2 text-base font-base rounded-sm'>Login</Link>
-                            <Link href='/auth?page=sign-up' className='bg-slate-50 text-slate-950 px-4 py-2 text-base font-bold rounded-sm'>Sign-Up</Link>
+                            <Link href='/auth/login' className='text-slate-50 px-4 py-2 text-base font-base rounded-sm'>Login</Link>
+                            <Link href='/auth/sign-up' className='bg-slate-50 text-slate-950 px-4 py-2 text-base font-bold rounded-sm'>Sign-Up</Link>
                         </>
                     )}
                 </div>
