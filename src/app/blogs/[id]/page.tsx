@@ -1,5 +1,3 @@
-"use client";
-
 import Container from "@/components/container";
 import { format } from "date-fns";
 import { TArticle } from "../schema";
@@ -7,7 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogs } from "@/app/api/blogs/action";
 
-const SingleBlog = async ({ params }: { params: { id: string } }) => {
+export default async function SingleBlog({ params }: { params: { id: string } }) {
     const { id } = params;
     const articles: TArticle[] = await getBlogs();
     const article = articles.find((item: TArticle) => item.id === id);
@@ -45,5 +43,3 @@ const SingleBlog = async ({ params }: { params: { id: string } }) => {
         </Container>
     );
 };
-
-export default SingleBlog;

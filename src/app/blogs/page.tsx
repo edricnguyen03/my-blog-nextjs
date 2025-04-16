@@ -12,7 +12,6 @@ export default async function Blogs() {
     if (!articles || articles.length === 0) {
         notFound();
     }
-
     return (
         <Container classNames="my-12">
             <div className="mb-6 flex items-center justify-between">

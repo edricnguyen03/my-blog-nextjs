@@ -37,8 +37,7 @@ export default function NewBlog() {
                     description: article.description,
                     content: article.content,
                     category: article.category,
-                    image: "/images/articles/article-1.jpg", // Default image
-                    createdAt: new Date().toISOString(),
+                    image: "/images/articles/article-1.jpg",
                 }),
             });
             if (!res.ok) {
