@@ -1,18 +1,60 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Container from "@/components/container";
 import { format } from "date-fns";
-import { TArticle } from "../schema";
+import { TArticle } from "@/app/blogs/schema";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBlogs } from "@/app/api/blogs/action";
 
-const SingleBlog = async ({ params }: { params: { id: string } }) => {
+export default function SingleBlog({ params }: { params: { id: string } }) {
     const { id } = params;
-    const articles: TArticle[] = await getBlogs();
-    const article = articles.find((item: TArticle) => item.id === id);
+    const [article, setArticle] = useState<TArticle>({
+        id: "",
+        title: "",
+        description: "",
+        content: "",
+        category: "",
+        image: "",
+        createdAt: new Date().toISOString(),
+    });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
 
-    if (!article) return notFound();
+    useEffect(() => {
+        async function fetchArticle() {
+            try {
+                const res = await fetch("/api/blogs", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!res.ok) {
+                    throw new Error("Failed to fetch blogs");
+                }
+
+                const articles: TArticle[] = await res.json();
+                const article = articles.find((item) => item.id === id);
+
+                console.log(article);
+                if (!article) {
+                    return notFound(); // Redirect to 404 if not found
+                } else {
+                    setArticle(article);
+                }
+            } catch (err: any) {
+                setError(err.message || "An error occurred. Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchArticle();
+    }, [id, router]);
 
     return (
         <Container classNames="my-12">
@@ -45,5 +87,3 @@ const SingleBlog = async ({ params }: { params: { id: string } }) => {
         </Container>
     );
 };
-
-export default SingleBlog;

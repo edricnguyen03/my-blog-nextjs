@@ -9,12 +9,12 @@ export async function GET() {
         const filePath = path.join(process.cwd(), "db.json");
         const data = fs.readFileSync(filePath, "utf-8");
         const jsonData = JSON.parse(data);
-
         return NextResponse.json(jsonData.articles);
     } catch {
         return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
     }
 }
+
 export async function POST(req: Request) {
     try {
         const filePath = path.join(process.cwd(), "db.json");

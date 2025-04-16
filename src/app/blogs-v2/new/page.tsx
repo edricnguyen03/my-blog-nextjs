@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Container from "@/components/container";
-import { TArticle } from "../schema";
+import { TArticle } from "@/app/blogs/schema";
 import { addBlogs } from "@/app/api/blogs/action";
 
 export default function NewBlog() {
@@ -25,21 +25,29 @@ export default function NewBlog() {
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        console.log("Submitting blog:", article);
         e.preventDefault();
         try {
-            await addBlogs({
-                title: article.title,
-                description: article.description,
-                content: article.content,
-                category: article.category,
-                image: "/images/articles/article-1.jpg", // Default image
-                createdAt: new Date().toISOString(),
+            const res = await fetch("/api/blogs", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: article.title,
+                    description: article.description,
+                    content: article.content,
+                    category: article.category,
+                    image: "/images/articles/article-1.jpg", // Default image
+                    createdAt: new Date().toISOString(),
+                }),
             });
+            if (!res.ok) {
+                throw new Error("Failed to create blog");
+            }
             alert("Blog created successfully!");
             router.push("/blogs");
-        } catch {
-            setError("An error occurred. Please try again.");
+        } catch (err: any) {
+            setError(err.message || "An error occurred. Please try again.");
         }
     };
 

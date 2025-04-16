@@ -23,6 +23,9 @@ const Header = () => {
                             <li>
                                 <Link href='/blogs'>Blog</Link>
                             </li>
+                            <li>
+                                <Link href='/blogs-v2'>Blog-v2</Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>

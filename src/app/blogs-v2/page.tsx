@@ -1,24 +1,50 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Container from "@/components/container";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
-import { TArticle } from "./schema";
-import { getBlogs } from "@/app/api/blogs/action";
+import { TArticle } from "../blogs/schema";
 
-export default async function Blogs() {
-    const articles: TArticle[] = await getBlogs();
-    console.log(articles);
-    if (!articles || articles.length === 0) {
-        notFound();
-    }
+export default function BlogTest() {
+    const [articles, setArticles] = useState<TArticle[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchBlogs() {
+            try {
+                const res = await fetch("/api/blogs", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!res.ok) {
+                    throw new Error("Failed to fetch blogs");
+                }
+
+                const data = await res.json();
+                setArticles(data);
+            } catch (err: any) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchBlogs();
+    }, []);
+
 
     return (
         <Container classNames="my-12">
             <div className="mb-6 flex items-center justify-between">
                 <h1 className="text-4xl font-bold">All Blogs</h1>
                 <Link
-                    href="/blogs/new"
+                    href="/blogs-v2/new"
                     className="w-max rounded-md bg-slate-950 px-4 py-2 text-base font-bold text-slate-50"
                 >
                     Create new
@@ -57,7 +83,7 @@ export default async function Blogs() {
                                     {article.description}
                                 </p>
                                 <Link
-                                    href={`/blogs/${article.id}`}
+                                    href={`/blogs-v2/${article.id}`}
                                     className="w-max rounded-md bg-slate-950 px-4 py-2 capitalize text-slate-50"
                                 >
                                     Read More
