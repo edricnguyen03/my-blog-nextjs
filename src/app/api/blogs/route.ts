@@ -7,7 +7,7 @@ export async function GET() {
     try {
         // Đường dẫn tới file db.json
         const filePath = path.join(process.cwd(), "db.json");
-        const data = fs.readFileSync(filePath, "utf-8");
+        const data = await fs.promises.readFile(filePath, "utf-8");
         const jsonData = JSON.parse(data);
         return NextResponse.json(jsonData.articles);
     } catch {
@@ -18,21 +18,23 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const filePath = path.join(process.cwd(), "db.json");
-        const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        const data = await fs.promises.readFile(filePath, "utf-8");
+        const jsonData = JSON.parse(data);
 
         const body = await req.json();
         const newBlog = {
-            id: (data.articles.length + 1).toString(),
+            id: (jsonData.articles.length + 1).toString(),
             createdAt: new Date().toISOString(),
             ...body,
         };
 
-        data.articles.push(newBlog);
+        jsonData.articles.push(newBlog);
 
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+        await fs.promises.writeFile(filePath, JSON.stringify(jsonData, null, 2), "utf-8");
 
         return NextResponse.json(newBlog, { status: 201 });
-    } catch {
+    } catch (error) {
+        console.error(error);
         return NextResponse.json({ error: "Failed to create blog" }, { status: 500 });
     }
 }
