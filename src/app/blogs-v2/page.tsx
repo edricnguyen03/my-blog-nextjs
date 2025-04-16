@@ -6,11 +6,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 import { TArticle } from "../blogs/schema";
+import Loading from "../loading";
 
 export default function BlogTest() {
     const [articles, setArticles] = useState<TArticle[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -28,16 +28,15 @@ export default function BlogTest() {
 
                 const data = await res.json();
                 setArticles(data);
-            } catch (err: any) {
-                setError(err.message);
+            } catch {
+                alert("An error occurred. Please try again.");
             } finally {
                 setLoading(false);
             }
         }
-
         fetchData();
     }, []);
-
+    if (loading) return <Loading />;
 
     return (
         <Container classNames="my-12">

@@ -7,6 +7,8 @@ import { format } from "date-fns";
 import { TArticle } from "@/app/blogs/schema";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Loading from "@/app/loading";
+import GlobalError from "next/dist/client/components/error-boundary";
 
 export default function SingleBlog({ params }: { params: { id: string } }) {
     const { id } = params;
@@ -46,8 +48,8 @@ export default function SingleBlog({ params }: { params: { id: string } }) {
                 } else {
                     setArticle(article);
                 }
-            } catch (err: any) {
-                setError(err.message || "An error occurred. Please try again.");
+            } catch {
+                setError("An error occurred. Please try again.");
             } finally {
                 setLoading(false);
             }
@@ -55,6 +57,9 @@ export default function SingleBlog({ params }: { params: { id: string } }) {
 
         fetchData();
     }, [id, router]);
+
+    if (loading) return <Loading />;
+    if (error) return <GlobalError error={error} />;
 
     return (
         <Container classNames="my-12">

@@ -34,6 +34,8 @@ export default function NewBlog() {
                 content: article.content,
                 category: article.category,
                 image: "/images/articles/article-1.jpg",
+                id: "",
+                createdAt: new Date().toISOString(),
             });
             alert("Blog created successfully!");
             router.push("/blogs");

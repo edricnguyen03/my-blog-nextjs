@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Container from "@/components/container";
 import { TArticle } from "@/app/blogs/schema";
-import { addBlogs } from "@/app/api/blogs/action";
 
 export default function NewBlog() {
     const router = useRouter();
@@ -38,6 +37,7 @@ export default function NewBlog() {
                     content: article.content,
                     category: article.category,
                     image: "/images/articles/article-1.jpg",
+                    createdAt: new Date().toISOString(),
                 }),
             });
             if (!res.ok) {
@@ -45,10 +45,11 @@ export default function NewBlog() {
             }
             alert("Blog created successfully!");
             router.push("/blogs");
-        } catch (err: any) {
-            setError(err.message || "An error occurred. Please try again.");
+        } catch {
+            setError("An error occurred. Please try again.");
         }
     };
+
 
     return (
         <Container classNames="flex flex-col items-center justify-center h-screen">
