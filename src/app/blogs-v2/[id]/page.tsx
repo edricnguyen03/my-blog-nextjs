@@ -24,7 +24,7 @@ export default function SingleBlog({ params }: { params: { id: string } }) {
     const router = useRouter();
 
     useEffect(() => {
-        async function fetchArticle() {
+        async function fetchData() {
             try {
                 const res = await fetch("/api/blogs", {
                     method: "GET",
@@ -53,7 +53,7 @@ export default function SingleBlog({ params }: { params: { id: string } }) {
             }
         }
 
-        fetchArticle();
+        fetchData();
     }, [id, router]);
 
     return (

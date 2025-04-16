@@ -13,7 +13,7 @@ export default function BlogTest() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        async function fetchBlogs() {
+        async function fetchData() {
             try {
                 const res = await fetch("/api/blogs", {
                     method: "GET",
@@ -35,7 +35,7 @@ export default function BlogTest() {
             }
         }
 
-        fetchBlogs();
+        fetchData();
     }, []);
 
 
