@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBlogs } from "@/app/api/blogs/action";
 
+
+
+
 export default async function SingleBlog({ params }: { params: { id: string } }) {
     const { id } = params;
     const articles: TArticle[] = await getBlogs();
