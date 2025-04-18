@@ -1,21 +1,34 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Logout = () => {
     const router = useRouter();
+    const [isLoggingOut, setIsLoggingOut] = useState(true);
 
     useEffect(() => {
-        // Xóa cookie chứa thông tin người dùng
         document.cookie = "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-        router.push("/");
-        window.location.reload();
+
+        const timer = setTimeout(() => {
+            setIsLoggingOut(false);
+            router.push("/");
+        }, 500);
+
+        return () => clearTimeout(timer);
     }, [router]);
 
     return (
-        <div className="flex items-center justify-center h-screen">
-            <h1 className="text-2xl font-bold">Logging out...</h1>
+        <div className="flex flex-col items-center justify-center h-screen">
+            <p className="text-2xl mb-4">{isLoggingOut ? "Logging out..." : "Logged out successfully!"}</p>
+            {!isLoggingOut && (
+                <button
+                    onClick={() => router.push("/")}
+                    className="bg-slate-950 text-white px-4 py-2 rounded-md hover:bg-slate-800"
+                >
+                    Return to Home
+                </button>
+            )}
         </div>
     );
 };

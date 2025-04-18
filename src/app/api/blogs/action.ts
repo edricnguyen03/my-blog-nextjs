@@ -6,10 +6,19 @@ import {TArticle}  from "@/app/blogs/schema";
 const filePath = path.join(process.cwd(),"db.json");
 
 
-export async function getBlogs() {
+export async function getBlogs(searchQuery?: string) {
     const data = await fs.promises.readFile(filePath, "utf-8");
     const jsonData = JSON.parse(data);
-    return jsonData.articles;
+    const articles = jsonData.articles;
+    
+    if (searchQuery && searchQuery.trim() !== '') {
+        const query = searchQuery.toLowerCase();
+        return articles.filter((article: TArticle) => 
+            article.title.toLowerCase().includes(query)
+        );
+    }
+    
+    return articles;
 };
 
 export async function addBlogs(blog : TArticle) {
